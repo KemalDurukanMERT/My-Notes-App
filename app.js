@@ -1,3 +1,18 @@
+let addBtn = document.getElementById("addBtn");
+addBtn.addEventListener("click", function (e) {
+  let addTxt = document.getElementById("addTxt");
+  let notes = localStorage.getItem("notes");
+  if (notes == null) {
+    notesObj = [];
+  } else {
+    notesObj = JSON.parse(notes);
+  }
+  notesObj.push(addTxt.value);
+  localStorage.setItem("notes", JSON.stringify(notesObj));
+  addTxt.value = "";
+  showNotes();
+});
+
 function showNotes() {
   let notes = localStorage.getItem("notes");
   if (notes == null) {
@@ -17,10 +32,10 @@ function showNotes() {
     </div>
     `;
   });
-  let notesElm= document.getElementById('notes')
-  if(notesObj.length !=0){
-    notesElm.innerHTML=html
-  }else{
-    notesElm.innerHTML= `Nothing to show! Create your first note!`
+  let notesElm = document.getElementById("notes");
+  if (notesObj.length != 0) {
+    notesElm.innerHTML = html;
+  } else {
+    notesElm.innerHTML = `Nothing to show! Create your first note!`;
   }
 }
