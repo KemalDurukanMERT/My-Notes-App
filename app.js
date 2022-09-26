@@ -1,3 +1,5 @@
+showNotes();
+
 let addBtn = document.getElementById("addBtn");
 addBtn.addEventListener("click", function (e) {
   let addTxt = document.getElementById("addTxt");
@@ -13,6 +15,7 @@ addBtn.addEventListener("click", function (e) {
   showNotes();
 });
 
+
 function showNotes() {
   let notes = localStorage.getItem("notes");
   if (notes == null) {
@@ -27,7 +30,7 @@ function showNotes() {
         <div class="card-body">
             <h5 class="card-title">Note ${index + 1}</h5>
             <p class="card-text">${element}</p>
-            <button id="${index}" onclick="deleteNode(this.id)" class="btn btn-danger">Delete Note</button>
+            <button id="${index}" onclick="deleteNote(this.id)" class="btn btn-danger">Delete Note</button>
         </div>
     </div>
     `;
@@ -51,3 +54,9 @@ function deleteNote(index) {
   localStorage.setItem("notes", JSON.stringify(notesObj));
   showNotes();
 }
+
+addTxt.addEventListener('keydown', (e) =>{
+    if (e.code==='Enter'){
+        addBtn.click()
+    }
+})
